@@ -1,5 +1,5 @@
 {
-  "name": "pull-me-closer",
+  "name": "pull-me-tender",
   "version": "1.0.0",
   "description": "Command line tool to show open github pull requests",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/fritzvd/pull-me-closer.git"
+    "url": "https://github.com/fritzvd/pull-me-tender.git"
   },
   "keywords": [
     "github",
@@ -18,12 +18,12 @@
   "author": "fritzvd",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/fritzvd/pull-me-closer/issues"
+    "url": "https://github.com/fritzvd/pull-me-tender/issues"
   },
   "bin": {
-    "pull-me-closer": "./index.js"
+    "pull-me-tender": "./index.js"
   },
-  "homepage": "https://github.com/fritzvd/pull-me-closer",
+  "homepage": "https://github.com/fritzvd/pull-me-tender",
   "dependencies": {
     "colors": "^1.0.3",
     "commander": "^2.7.1",
