@@ -1,0 +1,27 @@
+{
+  "name": "pull-me-tender",
+  "version": "1.0.0",
+  "description": "show me if i still need to review",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fritzvd/pull-me-tender.git"
+  },
+  "keywords": [
+    "github",
+    "pull-requests",
+    "elvis"
+  ],
+  "author": "fritzvd",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fritzvd/pull-me-tender/issues"
+  },
+  "homepage": "https://github.com/fritzvd/pull-me-tender",
+  "dependencies": {
+    "github": "^0.2.3"
+  }
+}
