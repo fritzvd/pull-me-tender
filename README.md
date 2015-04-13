@@ -12,4 +12,4 @@ Create a [personal access token](https://github.com/settings/applications).
 It will prompt you for your username and token. And for repos you want to see pull-requests for. Now in the future just run: `pull-me-tender`
 
 
-[!Elvis](https://raw.githubusercontent.com/fritzvd/pull-me-tender/master/elvis.png)
+[!Elvis](https://fritzvd.github.io/pull-me-tender/elvis.png)
