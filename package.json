@@ -1,7 +1,7 @@
 {
   "name": "pull-me-closer",
   "version": "1.0.0",
-  "description": "show me if i still need to review",
+  "description": "Command line tool to show open github pull requests",
   "main": "index.js",
   "scripts": {
     "test": "node index.js"
