@@ -37,9 +37,8 @@ try {
 
 function getUsernameEtc () {
   prompt.start();
-  prompt.get(["username", "token", "repos"], function (err, result) {
+  prompt.get(["token", "repos"], function (err, result) {
    cfg = {
-      username: result.username,
       token: result.token,
       repos: result.repos.split(',')
     };
