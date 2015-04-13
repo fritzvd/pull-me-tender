@@ -4,19 +4,41 @@ var github = require('octonode');
 var colors = require('colors');
 var q = require('q');
 var program  = require('commander');
+var prompt = require('prompt');
+var fs = require('fs');
+
+prompt.start();
 
 /**
  * setup command line parsing
  */
 program
   .version('1.0.0')
-  .option('-v, --verbose', 'Give more information')
-  .option('-t, --titles', 'Show titles')
-  .option('-s --story', 'Add descriptions to output')
+  .option('-a, --add-repositories [type]', 'add repositories comma seperated without spaces[fritzvd/pull-me-tender,fritzvd/harmonize]')
   .option('-m, --minimal', 'Give only urls')
+  .option('-t, --titles', 'Show titles')
+  .option('-s, --story', 'Add descriptions to output')
+  .option('-v, --verbose', 'Give more information')
   .parse(process.argv);
 
-var cfg = require('./config');
+try {
+  var cfg = require('./config');
+} catch (e) {
+  console.log("We don't have information on you yet");
+  prompt.get(["username", "token", "repos"], function (err, result) {
+   fs.writeFileSync('./config.json', JSON.stringify({
+      username: result.username,
+      token: result.token,
+      repos: result.repos.split(',')
+    }), null, 4);
+  });
+}
+
+if (program.addRepositories) {
+  cfg.repos = cfg.repos.concat(program.addRepositories.split(','));
+  fs.writeFileSync('./config.json', JSON.stringify(cfg, null, 4));
+}
+
 var deferred = q.defer(),
     client = github.client(cfg.token),
     pulls = {};
