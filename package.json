@@ -1,6 +1,6 @@
 {
   "name": "pull-me-tender",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Command line tool to show open github pull requests",
   "main": "index.js",
   "scripts": {
@@ -29,6 +29,7 @@
     "commander": "^2.7.1",
     "octonode": "^0.6.16",
     "prompt": "^0.2.14",
+    "pwuid": "^1.0.2",
     "q": "^1.2.0"
   }
 }

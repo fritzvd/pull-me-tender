@@ -5,9 +5,11 @@ var colors = require('colors');
 var q = require('q');
 var program  = require('commander');
 var prompt = require('prompt');
+var pwuid = require('pwuid');
 var fs = require('fs');
 
 var pulls = {};
+var configFileLocation = pwuid().dir + '/.pull-me-config.json';
 
 /**
  * setup command line parsing
@@ -22,7 +24,7 @@ program
   .parse(process.argv);
 
 try {
-  var cfg = require('./config');
+  var cfg = require(configFileLocation);
   if (!cfg.token || !cfg.repos) {
     throw new Error('FILL STUFF in dude');
   } else {
@@ -41,7 +43,7 @@ function getUsernameEtc () {
       token: result.token,
       repos: result.repos.split(',')
     };
-   fs.writeFileSync('./config.json', JSON.stringify(cfg), null, 4);
+   fs.writeFileSync(configFileLocation, JSON.stringify(cfg), null, 4);
    startGithubPulls();
   });
 }
@@ -49,7 +51,7 @@ function getUsernameEtc () {
 function startGithubPulls () {
   if (program.addRepositories) {
     cfg.repos = cfg.repos.concat(program.addRepositories.split(','));
-    fs.writeFileSync('./config.json', JSON.stringify(cfg, null, 4));
+    fs.writeFileSync(configFileLocation, JSON.stringify(cfg, null, 4));
   }
 
   var deferred = q.defer(),
