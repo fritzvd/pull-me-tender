@@ -7,7 +7,7 @@ var program  = require('commander');
 var prompt = require('prompt');
 var fs = require('fs');
 
-prompt.start();
+var pulls = {};
 
 /**
  * setup command line parsing
@@ -23,47 +23,60 @@ program
 
 try {
   var cfg = require('./config');
+  if (!cfg.token || !cfg.repos) {
+    throw new Error('FILL STUFF in dude');
+  } else {
+    startGithubPulls();
+  }
 } catch (e) {
   console.log("We don't have information on you yet");
+  getUsernameEtc();
+}
+
+function getUsernameEtc () {
+  prompt.start();
   prompt.get(["username", "token", "repos"], function (err, result) {
-   fs.writeFileSync('./config.json', JSON.stringify({
+   cfg = {
       username: result.username,
       token: result.token,
       repos: result.repos.split(',')
-    }), null, 4);
+    };
+   fs.writeFileSync('./config.json', JSON.stringify(cfg), null, 4);
+   startGithubPulls();
   });
 }
 
-if (program.addRepositories) {
-  cfg.repos = cfg.repos.concat(program.addRepositories.split(','));
-  fs.writeFileSync('./config.json', JSON.stringify(cfg, null, 4));
-}
-
-var deferred = q.defer(),
-    client = github.client(cfg.token),
-    pulls = {};
-
-var promises = [deferred.promise];
-
-cfg.repos.forEach(function (repo, i) {
-  var localDefer = q.defer();
-  promises.push(localDefer.promise);
-
-  pulls[repo] = [];
-
-  client.repo(repo).prs(function(err, result) {
-    if (result.length == 0) { localDefer.resolve() }
-    result.forEach(function (pr) {
-      pulls[repo].push(pr);
-      localDefer.resolve();
-    });
-  });
-  
-  if (i == cfg.repos.length - 1) {
-    deferred.resolve();
-    q.all(promises).then(printPrs);
+function startGithubPulls () {
+  if (program.addRepositories) {
+    cfg.repos = cfg.repos.concat(program.addRepositories.split(','));
+    fs.writeFileSync('./config.json', JSON.stringify(cfg, null, 4));
   }
-})
+
+  var deferred = q.defer(),
+      client = github.client(cfg.token);
+
+  var promises = [deferred.promise];
+
+  cfg.repos.forEach(function (repo, i) {
+    var localDefer = q.defer();
+    promises.push(localDefer.promise);
+
+    pulls[repo] = [];
+
+    client.repo(repo).prs(function(err, result) {
+      if (result.length == 0) { localDefer.resolve() }
+      result.forEach(function (pr) {
+        pulls[repo].push(pr);
+        localDefer.resolve();
+      });
+    });
+    
+    if (i == cfg.repos.length - 1) {
+      deferred.resolve();
+      q.all(promises).then(printPrs);
+    }
+  })
+}
 
 function printPrs () {
   Object.keys(pulls).forEach(function (repo) {
