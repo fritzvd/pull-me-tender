@@ -20,7 +20,6 @@ program
   .option('-m, --minimal', 'Give only urls')
   .option('-t, --titles', 'Show titles')
   .option('-s, --story', 'Add descriptions to output')
-  .option('-v, --verbose', 'Give more information')
   .parse(process.argv);
 
 try {
@@ -39,7 +38,7 @@ function getUsernameEtc () {
   prompt.start();
   prompt.get(["token", "repos"], function (err, result) {
    cfg = {
-      token: result.token,
+      token: result.token.replace(/(^[ '\^\$\*#&]+)|([ '\^\$\*#&]+$)/g, ''),
       repos: result.repos.split(',')
     };
    fs.writeFileSync(configFileLocation, JSON.stringify(cfg), null, 4);
