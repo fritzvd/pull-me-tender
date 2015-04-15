@@ -31,6 +31,7 @@ try {
   }
 } catch (e) {
   console.log("We don't have information on you yet");
+  console.log("(Create an access token on https://github.com/settings/applications)");
   getUsernameEtc();
 }
 
