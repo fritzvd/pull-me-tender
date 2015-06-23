@@ -30,8 +30,8 @@ try {
     startGithubPulls()
   }
 } catch (e) {
-  console.log("We don't have information on you yet")
-  console.log("(Create an access token on https://github.com/settings/applications)")
+  console.log('We don\'t have information on you yet')
+  console.log('(Create an access token on https://github.com/settings/applications)')
   getUsernameEtc()
 }
 
@@ -83,7 +83,9 @@ function startGithubPulls () {
 
 function printPrs () {
   Object.keys(pulls).forEach(function (repo) {
-    console.log('\n' + repo.underline.red)
+    if (pulls[repo].length > 1) {
+      console.log('\n' + repo.underline.red)
+    }
     pulls[repo].forEach(function (pull) {
       var message = ''
       if (program.minimal) {

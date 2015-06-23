@@ -4,7 +4,8 @@
   "description": "Command line tool to show open github pull requests",
   "main": "index.js",
   "scripts": {
-    "test": "standard && tap"
+    "test": "standard",
+    "start": "node index"
   },
   "repository": {
     "type": "git",
