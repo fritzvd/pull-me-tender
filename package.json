@@ -4,7 +4,7 @@
   "description": "Command line tool to show open github pull requests",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "test": "standard && tap"
   },
   "repository": {
     "type": "git",
@@ -25,11 +25,13 @@
   },
   "homepage": "https://github.com/fritzvd/pull-me-tender",
   "dependencies": {
-    "colors": "^1.0.3",
     "commander": "^2.7.1",
     "octonode": "^0.6.16",
     "prompt": "^0.2.14",
     "pwuid": "^1.0.2",
     "q": "^1.2.0"
+  },
+  "devDependencies": {
+    "standard": "^4.3.2"
   }
 }
