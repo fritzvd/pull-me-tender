@@ -20,6 +20,7 @@ program
   .option('-m, --minimal', 'Give only urls')
   .option('-t, --titles', 'Show titles')
   .option('-s, --story', 'Add descriptions to output')
+  .option('-w, --which-repos', 'Shows you which repos you are tracking')
   .parse(process.argv)
 
 try {
@@ -83,9 +84,14 @@ function startGithubPulls () {
 
 function printPrs () {
   Object.keys(pulls).forEach(function (repo) {
-    if (pulls[repo].length > 1) {
-      console.log('\n' + repo.underline.red)
+    if (pulls[repo].length > 1 || program.whichRepos) {
+      console.log('\n', repo.underline.red, ' - https://github.com/' + repo)
     }
+
+    if (program.whichRepos) {
+      return
+    }
+
     pulls[repo].forEach(function (pull) {
       var message = ''
       if (program.minimal) {
