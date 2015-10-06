@@ -24,6 +24,7 @@ The first run will prompt you for your username and token. And for repos you wan
     -h, --help                     output usage information
     -V, --version                  output the version number
     -a, --add-repositories [type]  add repositories comma seperated without spaces[fritzvd/pull-me-tender,fritzvd/harrrhmony]
+    -r, --remove-repositories [type]  remove repositories comma seperated without spaces[fritzvd/pull-me-tender,fritzvd/harrrhmony]
     -m, --minimal                  Give only urls
     -t, --titles                   Show titles
     -s, --story                    Add descriptions to output
