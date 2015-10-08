@@ -26,6 +26,7 @@ The first run will prompt you for your username and token. And for repos you wan
     -a, --add-repositories [type]  add repositories comma seperated without spaces[fritzvd/pull-me-tender,fritzvd/harrrhmony]
     -r, --remove-repositories [type]  remove repositories comma seperated without spaces[fritzvd/pull-me-tender,fritzvd/harrrhmony]
     -m, --minimal                  Give only urls
+    -u, --user                     Show user that requested merge
     -t, --titles                   Show titles
     -s, --story                    Add descriptions to output
     -v, --verbose                  Give more information
@@ -34,4 +35,4 @@ The first run will prompt you for your username and token. And for repos you wan
 If you want to work on it send me a pull-request (I'll see if I need to pull with `pull-me-tender`) and I'll get back to you.
 
 # license:
-ISC, open source, free as in beer. Open as in: we don't judge.
+ISC, open source, free as in beer. Open as in: we don't judge :dizzy_face:.
