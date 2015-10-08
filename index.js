@@ -15,6 +15,7 @@ program
   .option('-r, --remove-repositories [type]', 'remove repositories comma seperated')
   .option('-m, --minimal', 'Give only urls')
   .option('-t, --titles', 'Show titles')
+  .option('-u, --user', 'Show user that wants to merge')
   .option('-s, --story', 'Add descriptions to output')
   .option('-w, --which-repos', 'Shows you which repos you are tracking')
   .parse(process.argv)
