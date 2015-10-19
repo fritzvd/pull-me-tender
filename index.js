@@ -18,6 +18,7 @@ program
   .option('-u, --user', 'Show user that wants to merge')
   .option('-s, --story', 'Add descriptions to output')
   .option('-w, --which-repos', 'Shows you which repos you are tracking')
+  .option('-c, --configure', 'Reconfigure pull-me-tender')
   .parse(process.argv)
 
 try {
@@ -25,11 +26,11 @@ try {
   if (!cfg.token || !cfg.repos) {
     throw new Error('FILL STUFF in dude')
   }
-} catch (e) {
-  console.log('We don\'t have information on you yet')
-  console.log('(Create an access token on https://github.com/settings/applications)')
-  getUserInfo()
-} finally {
   main(program)
+} catch (e) {
+  console.log("We don't have information on you yet")
+  console.log('(Create an access token on https://github.com/settings/tokens/new)')
+  getUserInfo(function () {
+    main(program)
+  })
 }
-

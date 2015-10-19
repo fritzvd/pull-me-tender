@@ -30,6 +30,8 @@ The first run will prompt you for your username and token. And for repos you wan
     -t, --titles                   Show titles
     -s, --story                    Add descriptions to output
     -v, --verbose                  Give more information
+    -w, --which                    Which repos are you following
+    -c, --configure                Reconfigure pull-me-tender
 
 # collaboration
 If you want to work on it send me a pull-request (I'll see if I need to pull with `pull-me-tender`) and I'll get back to you.
